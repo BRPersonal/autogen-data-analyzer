@@ -2,6 +2,13 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import time
+from datetime import datetime
+
+
+def log(message: str) -> None:
+    """Display log entry with current date followed by the message."""
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    print(f"[{timestamp}] — {message}")
 
 # ----------------------------
 # Page config
@@ -126,3 +133,5 @@ st.markdown("""
 # ----------------------------
 st.divider()
 st.caption("Built with ❤️ using Streamlit")
+
+log("Page rendering completed")

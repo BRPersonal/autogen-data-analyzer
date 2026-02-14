@@ -4,6 +4,7 @@ from utils.openai_model_client import get_model_client
 from utils.docker_utils import getDockerCommandLineExecutor,start_docker_container,stop_docker_container
 from autogen_agentchat.messages import TextMessage
 from autogen_agentchat.base import TaskResult
+import warnings 
 
 
 async def main():
@@ -32,5 +33,8 @@ async def main():
 
 
 if (__name__=='__main__'):
+    #suppress warnings
+    warnings.filterwarnings('ignore')  
+
     asyncio.run(main())
 

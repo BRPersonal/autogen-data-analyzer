@@ -125,4 +125,6 @@ press ctrl + c to stop the server
 Docker must be running
 $ streamlit run streamlit_app.py
 
-Generate a bar chart of survived and expired for male and female
+Enter this Task in UI
+
+Can you give me a graph of survived and died in my data titanic.csv and save it as output.png
