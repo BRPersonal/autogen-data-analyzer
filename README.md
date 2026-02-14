@@ -123,8 +123,12 @@ press ctrl + c to stop the server
 
 
 Docker must be running
+
+$ uv run main.py
+You should be able to see output.png file in temp folder
+
 $ streamlit run streamlit_app.py
 
 Enter this Task in UI
 
-Can you give me a graph of survived and died in my data titanic.csv and save it as output.png
+Can you give me a graph of survived and died in my data data.csv and save it as output.png
