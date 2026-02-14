@@ -6,8 +6,8 @@ from team.analyzer_gpt import getDataAnalyzerTeam
 from autogen_agentchat.messages import TextMessage
 from autogen_agentchat.base import TaskResult
 
-from config.openai_model_client import get_model_client
-from config.docker_utils import getDockerCommandLineExecutor,start_docker_container,stop_docker_container
+from utils.openai_model_client import get_model_client
+from utils.docker_utils import getDockerCommandLineExecutor,start_docker_container,stop_docker_container
 
 st.title('Analyzer GPT - Digital Data Analyzer')
 
@@ -18,11 +18,12 @@ if 'messages' not in st.session_state:
 if 'autogen_team_state' not in st.session_state:
     st.session_state.autogen_team_state = None
 
-# task = st.text_input("Enter your task",value = 'Can you give me number of columns in my data (file is data.csv)')
-
 task = st.chat_input("Enter your Task.")
 
-async def run_analyzer_gpt(docker,openai_model_client,task):
+async def run_analyzer_gpt(task):
+    # Create the required clients/executors
+    openai_model_client = get_model_client()
+    docker = getDockerCommandLineExecutor()
 
     try:
         await start_docker_container(docker)
@@ -70,20 +71,15 @@ if task:
     if uploaded_file is not None and task:
         
         if not os.path.exists('temp'):
-            os.makedirs('temp')
+            os.makedirs('temp',exists_ok=True)
 
         with open('temp/data.csv','wb') as f:
             f.write(uploaded_file.getbuffer())
 
-    
-    openai_model_client =get_model_client()
-    docker = getDockerCommandLineExecutor()
-
-
-    error = asyncio.run(run_analyzer_gpt(docker,openai_model_client,task))
+    error = asyncio.run(run_analyzer_gpt(task))
 
     if error:
-        st.error("An error occured :" , {error})
+        st.error(f"An error occurred: {error}")
 
     if os.path.exists('temp/output.png'):
         st.image('temp/output.png',caption='Analysis File')

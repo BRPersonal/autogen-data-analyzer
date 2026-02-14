@@ -1,5 +1,5 @@
-from agents.Code_Executor_agent import getCodeExecutorAgent
-from agents.Data_analyzer_agent import getDataAnalyzerAgent
+from agents.code_executor_agent import getCodeExecutorAgent
+from agents.data_analyzer_agent import getDataAnalyzerAgent
 from autogen_agentchat.teams import RoundRobinGroupChat
 from autogen_agentchat.conditions import TextMentionTermination
 

@@ -115,6 +115,14 @@ paste this content in settings.json
   "python.analysis.typeCheckingMode": "basic"
 }
 
+Watch a streamlit demo
+Activate your virtual environment
+$ source .venv/bin/activate
+$ streamlit run streamlit_demo.py
+press ctrl + c to stop the server
 
 
+Docker must be running
+$ streamlit run streamlit_app.py
 
+Generate a bar chart of survived and expired for male and female
